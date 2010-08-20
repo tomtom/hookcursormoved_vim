@@ -1,0 +1,35 @@
+*hookcursormoved.txt*  Call functions when the cursor position changed
+
+This experimental plugin provides some help with the definition of 
+functions that should be called when the cursor position changed.
+
+When the cursor position changes, it first checks if a certain condition 
+is met and then calls functions registered in 
+b:hookcursormoved_{MODE}_{CONDITION} (an array).
+
+In order to define new conditions, you have to set the variable  
+"g:hookcursormoved_{CONDITION}" to a function name (STRING). This 
+function takes the current mode (i .. insert mode; n ... normal mode) 
+as single argument.
+
+Functions are best registered using |hookcursormoved#Register()|.
+Example: >
+
+    function! WhatsGoingOn(mode) "{{{3
+        if mode == 'i'
+            DoThis
+        elseif mode == 'n'
+            DoThat
+        endif
+    endf
+
+    call hookcursormoved#Register('syntaxchange', function('WhatsGoingOn'))
+
+
+
+-----------------------------------------------------------------------
+
+Status:  Works for me (there may be some minor quirks)
+Install: See http://github.com/tomtom/vimtlib/blob/master/INSTALL.TXT
+See http://github.com/tomtom for related plugins.
+
