@@ -45,14 +45,14 @@ This script requires tlib (vimscript #1863) to be installed.
 ========================================================================
 Contents~
 
-        g:hookcursormoved_linechange ................... |g:hookcursormoved_linechange|
-        g:hookcursormoved_parenthesis .................. |g:hookcursormoved_parenthesis|
-        g:hookcursormoved_parenthesis_round ............ |g:hookcursormoved_parenthesis_round|
-        g:hookcursormoved_parenthesis_round_open ....... |g:hookcursormoved_parenthesis_round_open|
-        g:hookcursormoved_parenthesis_round_close ...... |g:hookcursormoved_parenthesis_round_close|
-        g:hookcursormoved_syntaxchange ................. |g:hookcursormoved_syntaxchange|
-        g:hookcursormoved_syntaxleave .................. |g:hookcursormoved_syntaxleave|
-        g:hookcursormoved_syntaxleave_oneline .......... |g:hookcursormoved_syntaxleave_oneline|
+        g:hookcursormoved#linechange ................... |g:hookcursormoved#linechange|
+        g:hookcursormoved#parenthesis .................. |g:hookcursormoved#parenthesis|
+        g:hookcursormoved#parenthesis_round ............ |g:hookcursormoved#parenthesis_round|
+        g:hookcursormoved#parenthesis_round_open ....... |g:hookcursormoved#parenthesis_round_open|
+        g:hookcursormoved#parenthesis_round_close ...... |g:hookcursormoved#parenthesis_round_close|
+        g:hookcursormoved#syntaxchange ................. |g:hookcursormoved#syntaxchange|
+        g:hookcursormoved#syntaxleave .................. |g:hookcursormoved#syntaxleave|
+        g:hookcursormoved#syntaxleave_oneline .......... |g:hookcursormoved#syntaxleave_oneline|
         hookcursormoved#Enable ......................... |hookcursormoved#Enable()|
         hookcursormoved#Register ....................... |hookcursormoved#Register()|
         hookcursormoved#Test_linechange ................ |hookcursormoved#Test_linechange()|
@@ -66,50 +66,46 @@ Contents~
 
 
 ========================================================================
-plugin/hookcursormoved.vim~
+autoload/hookcursormoved.vim~
 
-
-Modes:
-
-
-                                                    *g:hookcursormoved_linechange*
-g:hookcursormoved_linechange   (default: 'hookcursormoved#Test_linechange')
+                                                    *g:hookcursormoved#linechange*
+g:hookcursormoved#linechange   (default: 'hookcursormoved#Test_linechange')
+    Modes:
+    
     The cursor moved between lines.
 
-                                                    *g:hookcursormoved_parenthesis*
-g:hookcursormoved_parenthesis  (default: 'hookcursormoved#Test_parenthesis')
+
+
+                                                    *g:hookcursormoved#parenthesis*
+g:hookcursormoved#parenthesis  (default: 'hookcursormoved#Test_parenthesis')
     The cursor is over any kind of parenthesis/bracket/brace.
 
-                                                    *g:hookcursormoved_parenthesis_round*
-g:hookcursormoved_parenthesis_round (default: 'hookcursormoved#Test_parenthesis_round')
+                                                    *g:hookcursormoved#parenthesis_round*
+g:hookcursormoved#parenthesis_round (default: 'hookcursormoved#Test_parenthesis_round')
     The cursor is over (, ).
 
-                                                    *g:hookcursormoved_parenthesis_round_open*
-g:hookcursormoved_parenthesis_round_open (default: 'hookcursormoved#Test_parenthesis_round_open')
+                                                    *g:hookcursormoved#parenthesis_round_open*
+g:hookcursormoved#parenthesis_round_open (default: 'hookcursormoved#Test_parenthesis_round_open')
     The cursor is over (.
 
-                                                    *g:hookcursormoved_parenthesis_round_close*
-g:hookcursormoved_parenthesis_round_close (default: 'hookcursormoved#Test_parenthesis_round_close')
+                                                    *g:hookcursormoved#parenthesis_round_close*
+g:hookcursormoved#parenthesis_round_close (default: 'hookcursormoved#Test_parenthesis_round_close')
     The cursor is over ).
 
-                                                    *g:hookcursormoved_syntaxchange*
-g:hookcursormoved_syntaxchange (default: 'hookcursormoved#Test_syntaxchange')
+                                                    *g:hookcursormoved#syntaxchange*
+g:hookcursormoved#syntaxchange (default: 'hookcursormoved#Test_syntaxchange')
     The cursor moved in/out of a syntax region. 
 
-                                                    *g:hookcursormoved_syntaxleave*
-g:hookcursormoved_syntaxleave  (default: 'hookcursormoved#Test_syntaxleave')
+                                                    *g:hookcursormoved#syntaxleave*
+g:hookcursormoved#syntaxleave  (default: 'hookcursormoved#Test_syntaxleave')
     The cursor moved out of a syntax region. The syntax names that are 
     taken into consideration are restricted by the 
     b:hookcursormoved_syntaxleave (LIST) variable.
 
-                                                    *g:hookcursormoved_syntaxleave_oneline*
-g:hookcursormoved_syntaxleave_oneline (default: 'hookcursormoved#Test_syntaxleave_oneline')
-    Like g:hookcursormoved_syntaxleave but also consider line 
+                                                    *g:hookcursormoved#syntaxleave_oneline*
+g:hookcursormoved#syntaxleave_oneline (default: 'hookcursormoved#Test_syntaxleave_oneline')
+    Like g:hookcursormoved#syntaxleave but also consider line 
     changes.
-
-
-========================================================================
-autoload/hookcursormoved.vim~
 
                                                     *hookcursormoved#Enable()*
 hookcursormoved#Enable(condition)
