@@ -3,8 +3,8 @@
 " @Website:     http://www.vim.org/account/profile.php?user_id=4037
 " @License:     GPL (see http://www.gnu.org/licenses/gpl.txt)
 " @Created:     2007-10-04.
-" @Last Change: 2010-08-20.
-" @Revision:    0.3.247
+" @Last Change: 2012-09-19.
+" @Revision:    0.3.248
 
 " call tlog#Log('Load: '. expand('<sfile>')) " vimtlib-sfile
 
@@ -76,6 +76,7 @@ function! s:RunHooks(mode, condition) "{{{3
                 keepjumps keepmarks call call(HookFn, [a:mode])
             catch
                 echohl Error
+                echom "Exception" v:exception "from" v:throwpoint
                 echom v:errmsg
                 echohl NONE
             endtry
