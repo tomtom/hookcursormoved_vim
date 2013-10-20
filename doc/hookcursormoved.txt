@@ -71,7 +71,7 @@ autoload/hookcursormoved.vim~
                                                     *g:hookcursormoved#linechange*
 g:hookcursormoved#linechange   (default: 'hookcursormoved#Test_linechange')
     Modes:
-    
+
     The cursor moved between lines.
 
 
