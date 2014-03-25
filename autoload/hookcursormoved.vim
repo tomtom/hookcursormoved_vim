@@ -4,7 +4,7 @@
 " @License:     GPL (see http://www.gnu.org/licenses/gpl.txt)
 " @Created:     2007-10-04.
 " @Last Change: 2012-09-19.
-" @Revision:    0.3.248
+" @Revision:    0.3.249
 
 " call tlog#Log('Load: '. expand('<sfile>')) " vimtlib-sfile
 
@@ -105,11 +105,11 @@ endf
 function! hookcursormoved#Enable(condition) "{{{3
     if !exists('b:hookcursormoved_enabled')
         let b:hookcursormoved_enabled = []
-        autocmd HookCursorMoved CursorMoved,CursorMovedI <buffer> call s:SaveView()
+        autocmd HookCursorMoved CursorMoved,CursorMovedI <buffer> if !pumvisible() | call s:SaveView() | endif
     endif
     if index(b:hookcursormoved_enabled, a:condition) == -1
-        exec 'autocmd HookCursorMoved CursorMoved  <buffer> call s:RunHooks("n", '. string(a:condition) .')'
-        exec 'autocmd HookCursorMoved CursorMovedI <buffer> call s:RunHooks("i", '. string(a:condition) .')'
+        exec 'autocmd HookCursorMoved CursorMoved  <buffer> if !pumvisible() | call s:RunHooks("n", '. string(a:condition) .') | endif'
+        exec 'autocmd HookCursorMoved CursorMovedI <buffer> if !pumvisible() | call s:RunHooks("i", '. string(a:condition) .') | endif'
         call add(b:hookcursormoved_enabled, a:condition)
     endif
     if !exists('b:hookcursormoved_synname')
